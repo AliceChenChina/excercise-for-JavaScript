@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> </title>
+<link href=" " rel="stylesheet" type="text/css" />
+<script >
+window.onload=function(){
+        var oUl=document.getElementById('list');
+        var aLi=oUl.getElementsByTagName('li');
+        var oP=document.getElementsByTagName('p')[0];//只有一个元素，不要忘记写下标[0]
+        var sum=0;  //商品总数
+        var money=0;//总价格
+        var pri=0;//最贵单价
+        for (var i=0;i<aLi.length ;i++ )
+        {
+                fn(aLi[i]);
+        }
+
+
+        function fn(oLi){
+                var aBtn=oLi.getElementsByTagName('input');
+                var oStrong=oLi.getElementsByTagName('strong')[0];
+                var aSpan=oLi.getElementsByTagName('span');
+                var n1=Number(oStrong.innerHTML);
+                var n2=parseFloat(aSpan[0].innerHTML);
+
+                aBtn[0].onclick=function(){
+                        if (n1>0)  
+                        {
+                                n1--;
+                                sum--;
+                                money-=n2;
+                        }
+                
+                        if (n1==0)
+                        {
+                                pri=0 //如果数量n1变成0，则将单价最大值pri变成0，重新比较单价。
+                        
+                        }
+                        
+                        oStrong.innerHTML=n1;
+                        aSpan[1].innerHTML=n1*n2;
+                        fn3();
+                        //bug问题：数量已经减到0，但是最贵单价不会变成0，再点一次才能变成0.原因：n1变量要先赋值给oStrong.innerHTML，fn3函数才能判断非0数量的li是哪几个。
+                        oP.innerHTML='商品合计共：'+sum+'件，共花费了：'+money+'元。 其中最贵的商品单价是：'+pri+'元';
+
+                        
+                }
+
+                aBtn[1].onclick=function(){
+                        n1++;
+                        sum++;
+                        money+=n2;
+                        if (n2>pri)  //点“+”时判断最贵单价，不需要用fn3的函数，每次都循环判断最贵单价，提高效率
+                        {
+                                pri=n2;  
+                        }
+
+                        oStrong.innerHTML=n1;
+                        aSpan[1].innerHTML=n1*n2;
+                        oP.innerHTML='商品合计共：'+sum+'件，共花费了：'+money+'元。 其中最贵的商品单价是：'+pri+'元';
+                }
+                
+
+        
+                function fn3(){
+                        for (var i=0;i<aLi.length ;i++ ) //点“-”时重新比较最贵单价
+                        {
+                                if (aLi[i].getElementsByTagName('strong')[0].innerHTML>0)
+                                {
+                                        if (parseFloat(aLi[i].getElementsByTagName('span')[0].innerHTML)>pri)
+                                        {
+                                                pri=parseFloat(aLi[i].getElementsByTagName('span')[0].innerHTML);
+                                        }
+                                }
+                                
+                        }
+                }
+
+
+
+        }
+}
+
+</script>
+</head>
+
+ <BODY>
+  <ul id="list">
+        <li>
+                <input type="button" value="-"/>
+                <strong>0</strong>
+                <input type="button" value="+"/>
+                单价：<span>12.5</span>元
+                合计：<span>0</span>元
+        </li>
+        <li>
+                <input type="button" value="-"/>
+                <strong>0</strong>
+                <input type="button" value="+"/>
+                单价：<span>20</span>元
+                合计：<span>0</span>元
+        </li>
+        <li>
+                <input type="button" value="-"/>
+                <strong>0</strong>
+                <input type="button" value="+"/>
+                单价：<span>10</span>元
+                合计：<span>0</span>元
+        </li>
+  <p>商品合计共：0件，共花费了：0元。 其中最贵的商品单价是：0元</p>
+  
+  </ul>
+ </BODY>
+</HTML>

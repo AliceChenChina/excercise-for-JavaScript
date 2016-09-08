@@ -1,0 +1,158 @@
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>查找、替换、删除</title>
+<style>
+body,div,li,ul,ul li{margin:0;padding:0; font-size:13px;}
+ul li,li{ list-style:none;}
+body{background:#EFEFE7;}
+.content{ width:500px;background:#fff;padding:20px; line-height:25px; font-family:"微软雅黑"; font-size:14px; position:relative; height:250px;margin:20px;}
+.lis{ position:absolute; width:78px; left:550px; top:-2px;}
+a{ width:78px; height:41px;background:#94948C; display:inline-block; text-decoration:none; color:#fff; line-height:41px; text-align:center;}
+.lis ul{margin:0;width:78px;padding:0; display:none;}
+.lis ul li{ height:41px; line-height:41px; text-align:center;background:#94948C; margin-top:1px; color:#fff; cursor:pointer;}
+.lis ul li.hover{background:#E76308; color:#fff;}
+#box2{ width:500px; border:10px solid #E71063; position:absolute;margin: 0 20px; display:none;}
+#box2 ul{width:460px; border-bottom:1px solid #E73100;margin:10px auto; display:block; height:30px; overflow:hidden;}
+#box2 ul li{ width:80px; line-height:30px;float:left; text-align:center;cursor:pointer;}
+#box2 ul li.clicks{background:#E73100; color:#fff;}
+#box2 p{width:460px; margin:20px auto; display:none;}
+#box2 p input#con{ width:184px; height:26px;}
+#box2 p.cz{ display:block;}
+#ul2  strong{float:right;display:inline-block;cursor:pointer;}
+span { background:yellow; }
+</style>
+<script>
+window.onload=function(){
+        var aLink = document.getElementById('link');
+        var oP = document.getElementsByTagName('p');
+        var oUl = document.getElementById('ul1');
+        var aLi = oUl.getElementsByTagName('li');
+        var aDiv = document.getElementById('box2');
+        var oBtn = document.getElementById('btn');
+        var oBtn1 = document.getElementById('btn1');
+        var oCon = document.getElementById('con');
+        var oCons = document.getElementById('cons');
+        var oConT = document.getElementById('conT');
+        var oUl2 = document.getElementById('ul2');
+        var aLi2 = oUl2.getElementsByTagName('li');
+        var oS = aDiv.getElementsByTagName('strong')[0];
+        var aP = aDiv.getElementsByTagName('p');
+        var timer = null;
+        aLink.onmouseover=show;
+        aLink.onmouseout=hide;
+        //显示右侧菜单栏
+        function show(){
+                clearInterval( timer );
+                oUl.style.display = 'block';
+        }        
+        //隐藏右侧菜单栏
+        function hide(){
+                timer=setInterval(function(){
+                        oUl.style.display = 'none';                                                         
+                },200);
+        }
+        for( var i=0; i<aLi.length; i++){
+                aLi[i].index=i;
+                aLi[i].onmouseover = function(){
+                        this.className = 'hover';
+                        show();
+                        
+                }        
+                aLi[i].onmouseout = function(){
+                        this.className = '';
+                        hide();
+                        }
+                aLi[i].onclick = function(){
+                        for( var i=0; i<aLi.length; i++){
+                                if(i !=this.index){
+                                        aLi2[i].className = '';
+                                        aDiv.style.display='none';
+                                        aP[i].style.display='none';
+                                        }
+                                }
+                        aLi2[this.index].className = 'clicks';
+                        aDiv.style.display = 'block';
+                        aP[this.index].style.display='block';
+                        }
+        
+                }
+        //查找        
+        oBtn.onclick=function(){
+                var str = oCon.value;
+                var html = oP[0].innerHTML;
+                if(str == ''){
+                        alert('请输入查找的内容！');
+                        }else if(oP[0].innerHTML.indexOf(str) == -1){
+                                alert('您查找的内容'+str+'不存在');
+                        }else{
+                                oCon.value='';
+                                oP[0].innerHTML=html.split(str).join('<span>'+str+'</span>');
+                                }
+                }
+        //替换        
+        oBtn1.onclick=function(){
+                var str = oCons.value;
+                var html = oP[0].innerHTML;
+                var newStr = oConT.value;
+                
+                if(str == '' && newStr == '' ){
+                        alert('请输入要替换的内容！');
+                        }else if(html.indexOf(str)==-1){
+                                alert('您要替换的内容'+str+'不存在');
+                        }else{
+                                oCons.value = '';
+                                oConT.value = '';
+                                oP[0].innerHTML = html.split(str).join('<span>'+newStr+'</span>');
+                                }
+                }        
+        //隐藏        
+        oS.onclick=function(){
+                aDiv.style.display = 'none';
+        }        
+        
+        for( var i=0; i<aLi2.length;i++){
+                aLi2[i].index = i;
+                aLi2[i].onclick = function(){
+                        for( var i=0; i<aLi2.length; i++){
+                                if(i !=this.index){
+                                        aLi2[i].className = '';
+                                        aP[i].style.display='none';
+                                        }
+                                }
+                if(this.className == ''){
+                        this.className = 'clicks';
+                        aP[this.index].style.display='block';
+                        }else{
+                        this.className = '';
+                        aP[this.index].style.display='none';
+                }
+                        }
+                }
+        
+        }
+</script>
+</head>
+
+<body>
+<div class="content">
+<p>妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！
+2013年底，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升2011~2013n年,妙味精准研发出最新HTML5\css3课程,并推出远程培训课程,尝试将线下优良的培训模式移植到网络培训中,，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升2011~2013年</p>
+<li id="lis" class="lis">
+                <a id="link" href="javascript:;">展开</a>
+                    <ul id="ul1">
+                    <li>查找</li>
+                    <li>替换</li>
+    </ul>
+  </li>
+</div>
+        <div id="box2">
+            <ul id="ul2">
+                <li class="clicks">查找</li><li>替换</li><strong>X</strong>
+        </ul>
+        <p class="cz"><input type="text" id="con" />&nbsp;&nbsp;<input type="button" value="查找" id="btn"/></p>
+        <p class="th"><input type="text" id="cons" />&nbsp;&nbsp;<input type="text" id="conT" />&nbsp;&nbsp;<input type="button" value="替换" id="btn1"/></p>
+    </div>
+</body>
+</html>

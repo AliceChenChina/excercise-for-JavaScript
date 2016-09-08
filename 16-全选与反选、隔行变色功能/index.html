@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ok</title>
+<style>
+* {
+	padding: 0;
+	margin: 0px;
+}
+li {
+	list-style: none;
+	width: 200px;
+	border: 1px solid;
+	margin-top: 4px;
+}
+#div {
+	margin-top: 20px;
+}
+input:hover {
+	cursor: pointer;
+}
+ul,#div{ margin:40px 0 0 40px;}
+</style>
+<script>
+window.onload=function(){
+	var aUl=document.getElementById('ul')
+	var aDiv=document.getElementById('div')
+	var aIpt1=aDiv.getElementsByTagName('input')[0]
+	var oLi=aUl.getElementsByTagName('li')
+	var colorArry=['#ffffff','#999999']
+	var nowClr=null
+	
+	for( var i=0; i<oLi.length; i++){
+		oLi[i].index=i
+		oLi[i].style.background=colorArry[i%colorArry.length]}
+		
+		for( var i=0; i<oLi.length; i++){
+		oLi[i].onmouseover=function(){
+			nowClr=this.style.background
+			this.style.background='red'}
+			
+			oLi[i].onmouseout=function(){
+			
+			var aIpt=this.getElementsByTagName('input')[0]
+			if(aIpt.checked==true){this.style.background='red'}
+			else{this.style.background=colorArry[this.index%2]//注意点
+			}
+			
+			}
+			
+	}
+	var onOff=true
+	
+	aIpt1.onclick=function(){//注意点
+		if(onOff){
+		
+		for( var i=0; i<oLi.length; i++){
+			
+			oLi[i].getElementsByTagName('input')[0].checked=true;
+			oLi[i].style.background='red'
+			}
+			onOff=false}
+			else{for( var i=0; i<oLi.length; i++){
+			
+			oLi[i].getElementsByTagName('input')[0].checked=false;
+			oLi[i].style.background=colorArry[i%colorArry.length]
+			onOff=true}
+
+			
+			}	
+		}
+	}
+
+</script>
+</head>
+
+<body>
+<ul id="ul">
+  <li>
+    <input type="checkbox" />
+    是笨</li>
+  <li>
+    <input type="checkbox" />
+    是笨1</li>
+  <li>
+    <input type="checkbox" />
+    是笨2</li>
+  <li>
+    <input type="checkbox" />
+    是笨3</li>
+  <li>
+    <input type="checkbox" />
+    是笨4</li>
+  <li>
+    <input type="checkbox" />
+    是5笨</li>
+</ul>
+<div id="div">
+  <input type="checkbox"  />
+  全选</div>
+</body>
+</html>

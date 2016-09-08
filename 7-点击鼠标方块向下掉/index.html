@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+ul{ position:relative}
+li{  background:red; width:100px; height:100px; color:#FFF;  position:absolute; top:0px; }/*必需要用定位才行*/
+</style>
+<script src="3.miaov.js"></script>
+<script>
+window.onload=function(){
+	var oUl=document.getElementById('ul')
+	var aLi=oUl.getElementsByTagName('li')
+	var num=0
+	var num1=0
+	var onOff=true
+	var timer1=null
+	var timer=null
+	for( var i=0; i<10; i++){
+		oUl.innerHTML+='<li style="left:'+110*i+'px"></li>'//易错点
+		}//动态地添加li
+	document.onclick=function(){//此处用的是定时器，用了num变量，而不是用的for循环
+	/*if(onOff){
+		clearInterval(timer)
+		timer=setInterval(function(){
+			doMove( aLi[num], 'top', 23, 500 )
+			num ++
+			if(num===aLi.length){clearInterval(timer)//注意此处的if判断
+			}
+			},100)
+			onOff=false
+	}else{
+		clearInterval(timer1)
+		timer1=setInterval(function(){
+			doMove( aLi[num1], 'top', 23, 100 )
+			num1 ++
+			if(num1===aLi.length){clearInterval(timer1)//timer1,与num1
+			}
+			},100)
+			onOff=true
+		
+		}*/
+		clearInterval(timer)
+		timer=setInterval(function(){
+			doMove( aLi[num], 'top', 23, 500 )
+			num ++
+			if(num===aLi.length){clearInterval(timer)//注意此处的if判断
+			}
+			},100)
+		}
+		
+	}
+</script>
+</head>
+
+<body>
+<ul id="ul"></ul>
+</body>
+</html>

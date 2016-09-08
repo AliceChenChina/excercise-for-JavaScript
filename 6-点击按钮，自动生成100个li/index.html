@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+ul{ position:relative;}
+li{ width:50px; height:50px; background:#930; color:#fff; text-align:center; line-height:50px; position:absolute; list-style:none;}
+
+</style>
+<script>
+window.onload=function(){
+	
+	var aIpt=document.getElementsByTagName('input')
+	
+	var aUl=document.getElementsByTagName('ul')
+	
+	var aLi=aUl[0].getElementsByTagName('li')
+	var attr=['red','blue','green','yellow']
+	var onOff=true
+	var str=''
+	aIpt[0].onclick=function(){
+		if(onOff){abc();
+		onOff=false
+		}
+		}
+	
+	function abc(){//定义一个函数
+		for(var i=0; i<100; i++){
+		
+				
+				
+		str+='<li style=" background:'+attr[i%attr.length]+'">'+(i+1)+'</li>';//重点部分
+			
+		}
+		
+		aUl[0].innerHTML+=str  //生成10个li元素
+			var x=0
+			var y=0//为什么放到for循环里面就不可以
+			
+		for( var j=0;j<100;j++){
+			var a=j%10
+		
+			if(y>=10){
+				y=0;
+				x++}//设置循环判断体，好例子
+				y++
+			aLi[j].style.left=10+60*a+'px'
+			aLi[j].style.top=10+60*x+'px'
+			
+			
+			}
+	}
+	}
+</script>
+</head>
+
+<body>
+<input type="button"  value="自动生成100个背景色不一样的LI"/>
+<ul>
+
+</ul>
+</body>
+</html>

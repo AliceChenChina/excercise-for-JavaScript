@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	.div1{ width:400px; height:400px; border:1px solid #CCC; overflow:scroll; margin:0 auto;}
+	.div2, .div3{ float:left; }
+	.div2{ width:50px; height:50px; }
+	.div3{ width:250px;}
+	.div3 input{ width:250px;}
+	.div4{ float:right; width:80px; text-align:center; background:#F60; height:20px; line-height:20px; }
+	.div4:hover,.div2:hover{ cursor:pointer;}
+	.div4:hover{ background:#F00}
+	.div6{ width:400px;margin:0 auto; margin-top:10px;}
+	.left{ text-align:left}
+	.left span{ background:#390}
+	.right span{ background:#FF0}
+	.right{ text-align:right;}
+</style>
+<script>
+window.onload=function(){
+	var aDiv1=document.getElementById('div1')
+	var aDiv2=document.getElementById('div2')
+	var aDiv3=document.getElementById('div3')
+	var aDiv4=document.getElementById('div4')
+	var aImg=document.getElementById('img')
+	var oIpt=document.getElementsByTagName('input')
+	var arr=['img/0.gif','img/2.gif']
+	var onOff=true
+	var on=true
+	/*点击图片发生变换的编码*/
+	aImg.onclick=function(){
+		if(onOff){
+		aImg.src=arr[1]
+		onOff=false}
+		else{aImg.src=arr[0]//多注意，学习。
+		onOff=true
+		}
+		}
+		
+	aImg.onmouseover=function(){
+		if(on){
+		alert('亲，点击我可以切换表情哦！！')
+		on=false
+		}}
+	aDiv4.onclick=abc	
+	function abc(){
+		var str=oIpt[0].value
+		if(str==''){alert('请输入点东西吧')}
+		else{
+		if(onOff){
+			str=oIpt[0].value
+			aDiv1.innerHTML+="<p class='left'><img src='"+arr[0]+"'/><span>"+str+"</span></p>";
+			oIpt[0].value='';
+			}
+			else{
+				aDiv1.innerHTML+="<p class='right'><span>"+str+"</span><img src='"+aImg.src+"'/></p>";//注意字符串连接，变量与字符串的链接，’‘“”的链接，自己的错误的地方
+				oIpt[0].value='';
+				}	
+		}
+		
+		}
+	
+	}
+</script>
+</head>
+<body>
+<div id="div1" class="div1">
+<p class="left"><img src="img/0.gif" /><span>大家好，我叫qq</span></p>
+<p class="right"><span>大家好，我叫默默</span><img src="img/2.gif" /></p>
+
+</div>
+<div id="div6" class="div6">
+	<div id="div2" class="div2"><img id="img" src="img/0.gif" /></div>
+    <div id="div3" class="div3">
+    	<input type="text" />
+    </div>
+    <div id="div4" class="div4">
+    	发送
+    </div>
+</div>
+</body>
+</html>

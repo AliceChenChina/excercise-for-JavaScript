@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+span{ display:inline-block; width:50px; height:50px; line-height:50px; text-align:center;}
+</style>
+</head>
+
+<body>
+<div style="width:300px; padding:20px 20px;">
+<div style="width:100%; height:300px; margin-bottom:20px; border:1px solid #333"><span style="background:#96cb63">文</span><span style="background:#dfcf49">字</span><span style="background:#6fcce3">内</span><span style="background:#d98cde">容</span></div>
+<input type="text" /><input type="button" value="提交" />
+</div>
+<script>
+//var str='abc'
+//var str1='ABC'
+//alert(str.toUpperCase())
+//alert(str1.toLowerCase())
+//alert(str.split('',2))
+var oDiv=document.getElementsByTagName('div')
+var aIpt=document.getElementsByTagName('input')
+var colorArry=['#96cb63','#dfcf49','#6fcce3','#d98cde']
+aIpt[1].onclick=function(){
+	var value=aIpt[0].value
+	var oArray=value.split('')
+	
+	
+	for( var i=0; i<oArray.length; i++){
+		oArray[i]='<span style="background:'+colorArry[i%colorArry.length]+'">'+oArray[i]+'</span>'//此句没有想到，没做出来，这个是关键的部分
+		}
+		
+		oDiv[1].innerHTML+=oArray.join('')//此句没有想到，没做出来，这个是关键的部分
+	aIpt[0].value=''//此举也需要注意
+	}
+
+
+</script>
+</body>
+</html>

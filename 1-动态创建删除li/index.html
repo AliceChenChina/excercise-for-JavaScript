@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<input type="text" /><input type="button" value="提交" />
+<ul id="ul">
+</ul>
+<script>
+var aIpt=document.getElementsByTagName('input')
+var aUl=document.getElementById('ul')
+
+aIpt[1].onclick=function(){
+	var oLi=document.createElement('li')
+	
+	oLi.innerHTML=aIpt[0].value
+	if(aUl.children[0]){aUl.insertBefore(oLi,aUl.children[0])}else{
+		aUl.appendChild(oLi)
+		}
+	
+	
+	aIpt[0].value=''
+	var oA=document.createElement('a')
+	oA.innerHTML='删除'
+	oA.href='javascript:;'
+	oLi.appendChild(oA)
+	
+		oA.onclick=function(){
+			aUl.removeChild(this.parentNode)
+			
+			
+		}
+	}
+	
+	</script>
+</body>
+
+
+</html>

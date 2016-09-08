@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+body{ margin:0px; padding:0px}
+#ul{ width:1100px; margin:40px auto 0;}
+#ul li{width:250px;  list-style:none; display:inline-block; vertical-align:top; }
+#ul li div{width:230px; padding:0 10px;}
+#ul li div img{ width:230px;}
+</style>
+<script src="ajax.js"></script>
+<script>
+window.onload=function(){
+	var oUl=document.getElementById('ul')
+	var aLi=document.getElementsByTagName('li')
+	var index=0
+	var Number=aLi[0]
+	var page=1
+	var onOff=true
+	
+	main()
+	function main(){ajax('get','getPics.php','cpage='+page,function(data){
+		var data = JSON.parse(data);
+		if(!data.length){
+			return
+			}
+		for( var i=0; i<data.length; i++){
+			
+			var oP=document.createElement('p')
+			var oImg=document.createElement('img')
+			var oDiv=document.createElement('div')
+			oP.innerHTML=data[i].title
+			oImg.src=data[i].image
+			oImg.style.width=230+'px'//这部也非常重要
+			oImg.style.height= data[i].height * ( 230 / data[i].width ) + 'px';//这部也非常重
+			oDiv.appendChild(oImg)
+			oDiv.appendChild(oP)
+			compare()//这部非常棒
+			aLi[index].appendChild(oDiv)
+			}
+			onOff=true
+		})}
+		function compare(){//定义一个比较函数，用来获取哪个li元素的高度最低
+			for( var j=0; j<aLi.length; j++){
+				if(Number.offsetHeight>aLi[j].offsetHeight ){
+					Number=aLi[j]
+					index=j
+					}
+				}
+				return index
+			}
+		window.onscroll=function(){
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop
+			compare()
+			if(getTop(aLi[index])+aLi[index].offsetHeight<document.documentElement.clientHeight+scrollTop ){
+				if(onOff){
+					onOff=false
+				page++
+				main()}
+				}
+			
+			}
+	
+	function getTop(obj) {
+		var iTop = 0;
+		while(obj) {
+			iTop += obj.offsetTop;
+			obj = obj.offsetParent;
+		}
+		return iTop;
+	}
+	
+	}
+</script>
+</head>
+
+<body>
+<ul id="ul">
+ 	<li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

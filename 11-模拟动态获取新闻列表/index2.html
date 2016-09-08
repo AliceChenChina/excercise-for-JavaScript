@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>模拟新闻列表</title>
+<script src="ajax.js"></script>
+<style>
+body{ margin:0px; padding:0px}
+#ul li{  list-style:none; }
+</style>
+
+<script>
+window.onload=function(){
+	var oUl=document.getElementById('ul')
+	timer()
+	setInterval(function(){
+		timer()
+		},3000)//每0.3秒获取一下后台数据
+
+	function timer(){//定义一个函数
+	
+			ajax('get','getNews.php','',function(data){//调用ajax函数，注意不要忘记了参数data
+				
+				var data=JSON.parse(data)//把字符串类型的后台数据转化成相对应得数据格式
+				var str=''
+				for( var i=0; i<data.length ;i++){
+						str+='<li><a href="javascript:;">'+data[i]['title']+'</a></li>'
+						}
+				oUl.innerHTML=str//通过前台方式把后台数据添加到页面
+					
+				})	
+			}
+	}
+</script>
+</head>
+
+<body>
+<ul id="ul">
+ 
+</ul>
+</body>
+</html>

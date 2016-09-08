@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+body{ margin:0px; padding:0px;}
+ul{ display:inline-block; font-size:0px; }
+ul li{ display:inline-block; width:19px; height:20px; background:url(img/big-stars_29169e9.png) no-repeat -38px 0;}
+.turnOn{ cursor:pointer;  background:url(img/big-stars_29169e9.png) no-repeat 0px 0;}*/
+
+p{ display:inline-block; margin-left:50px;background:url(img/big-stars_29169e9.png) no-repeat 0x 0;}
+</style>
+</head>
+
+<body>
+<div>
+	<span>总体评价</span>
+	<ul id="ul">
+    	<li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <span id="note"></span>
+    <p>你对我们满意的话，就给我们打5星哦</p>
+</div>
+<script>
+var arr=['很差','差','还行','很好','满意']
+var oUl=document.getElementById('ul')
+var aLi=oUl.getElementsByTagName('li')
+var oNote=document.getElementById('note')
+var sun=true
+
+for(var i=0; i<aLi.length;i++){
+	aLi[i].index=i
+	aLi[i].onmouseover=a
+	function a(){
+		for(var j=0;j<this.index+1;j++){
+			aLi[j].className='turnOn'}
+			oNote.innerHTML=arr[this.index]
+			onOff=false
+		    sun=true
+		}
+	aLi[i].onmouseout=b
+	function b(){
+		if(sun){
+		for(var j=0;j<this.index+1;j++){
+			aLi[j].className=''}}
+		}	
+	aLi[i].onclick=function(){
+		
+		sun=false
+		
+		}
+	}
+
+</script>
+</body>
+</html>

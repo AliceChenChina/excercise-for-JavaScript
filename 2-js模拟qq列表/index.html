@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+ul,h2{ padding:0; margin:0}
+#list{ border:1px solid; margin:0 auto; width:300px;}
+li{ list-style:none; }
+li:hover{ cursor:pointer;}
+
+/*学到text-indent向右缩进，background:url(img/ico1.gif) no-repeat 5px 10px #69C;后面可以加底色颜色*/
+.lis h2{ text-indent:20px;background:url(img/ico1.gif) no-repeat 5px 10px #69C;  }
+.lis .active{text-indent:20px;background:url(img/ico2.gif) no-repeat 5px 10px #f60; }
+.lis li{ display:none; padding:6px 0;}
+</style>
+<script>
+window.onload=function(){
+	var oList=document.getElementById('list')
+	var aH2=oList.getElementsByTagName('h2')
+	var aUl=oList.getElementsByTagName('ul')
+    var onff=true
+	var oldLi=null
+	//h2变化的JS代码
+	for(var i=0; i<aH2.length;i++){
+		aH2[i].index=i
+		aH2[i].onclick=function(){
+			if(onff){
+			var aLi=aUl[this.index].getElementsByTagName('li')
+			this.className='active'
+			for(var j=0; j<aLi.length;j++){
+			aLi[j].a=true
+			aLi[j].style.display='block'
+			aLi[j].onclick=function(){
+				if(this.a){
+				   for(var m=0; m<aLi.length;m++){aLi[m].style.background=''}
+				this.style.background='#97cbff'
+				this.a=false
+				}else{
+					this.style.background=''
+					 this.a=true
+					}
+				
+				}
+			}
+			
+			onff=false
+			}else{
+				var aLi=aUl[this.index].getElementsByTagName('li')
+			this.className=''
+			for(var j=0; j<aLi.length;j++){
+			aLi[j].style.display='none'
+			}
+			onff=true
+				}
+			
+			}
+		
+		}
+	
+}
+</script>
+</head>
+
+<body>
+<ul id="list">
+	<li class="lis">
+    	<h2 >我的好友</h2>
+        <ul>
+        <li>陈子君</li>
+        <li>陈子君</li>
+        <li>陈子君</li>
+        <li>陈子君</li>
+        </ul>
+    </li>
+    	<li class="lis">
+    	<h2>企业好友</h2>
+        <ul>
+        <li>王晨</li>
+        <li>王晨</li>
+        <li>王晨</li>
+        <li>王晨</li>
+        </ul>
+    </li>
+       	<li class="lis">
+    	<h2>黑名单</h2>
+        <ul>
+        <li>小人</li>
+        <li>小人</li>
+        <li>小人</li>
+        <li>小人</li>
+        </ul>
+    </li>
+
+
+</ul>
+</body>
+</html>

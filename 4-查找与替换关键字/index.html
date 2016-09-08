@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+span{ background:yellow;}
+input{ margin-right:10px; width:150px; color:#999}
+.btn{ width:70px; color:#333}
+.btn:hover{ cursor:pointer;}
+p{ width:600px;}
+</style>
+</head>
+
+<body>
+<input type="text" value="请输入要查找的关键字" /><input type="text" value="请输入被替换的关键字" /><input class="btn" type="button" value="查找" />
+<p>   随着快递业务的发展，邮政编码似乎正在退出历史舞台，然而一家叫“小邻通”的社区服务网，巧妙利用邮政编码带来的地区划分特性，开展O2O业务（即线下商务与互联网结合），让就近的社区服务真正进入老百姓的生活中。据小邻通社区服务网创办人江志华介绍，“小邻通”是一个一站式、有保障的社区服务平台，目前已覆盖上海市中心11个区县和外环以内的所有社区，被多个社区、居委会、物业指定为社区服务首选商，如浦东著名的清水苑社区。居民可以通过手机微信订阅号搜索“小邻通”，就可找到自家周围五公里以内的服务商，享受到等待时间不超过半小时的上门服务。</p>
+<script>
+var aIpt=document.getElementsByTagName('input')
+var oP=document.getElementsByTagName('p')[0]
+aIpt[0].onfocus=function(){
+	if(this.value=="请输入要查找的关键字"){ this.value=''}
+	}
+	aIpt[0].onblur=function(){
+	if(this.value==""){ this.value='请输入要查找的关键字'}
+	}
+	aIpt[1].onfocus=function(){
+	if(this.value=="请输入被替换的关键字"){ this.value=''}
+	}
+	aIpt[1].onblur=function(){
+	if(this.value==""){ this.value='请输入被替换的关键字'}
+	}
+aIpt[2].onclick=function(){
+	var str=aIpt[0].value
+	var str2=aIpt[1].value
+	if(!str)return false
+	oP.innerHTML=oP.innerHTML.split(str).join('<span>'+str2+'</span>')//此句为关键，自己没想到。。。。。
+	
+	
+	}
+</script>
+</body>
+</html>
